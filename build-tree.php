@@ -3,7 +3,7 @@
 
 foreach(glob(realpath(dirname(__FILE__)) . '/configs/*.ini') as $configFile)
 {
-	buildTree(parse_ini_file($configFile));
+	buildTree(parse_ini_file($configFile), basename($configFile));
 }
 
 
@@ -22,7 +22,7 @@ function printJoin($forms, $field)
 }
 
 
-function buildTree($config)
+function buildTree($config, $name)
 {
 	extract($config);
 
@@ -33,9 +33,12 @@ function buildTree($config)
 	$page = 0;
 	$total = 0;
 
-	echo "\n\n\n";
-	var_dump($config);
-	echo "\n\n\n";
+	echo "Processing $name\n";
+	echo "================\n";
+
+	//echo "\n\n\n";
+	//var_dump($config);
+	//echo "\n\n\n";
 	
 	while ($total == 0 || $total > $limit * $page)
 	{
@@ -209,6 +212,7 @@ function buildTree($config)
 			}
 		}
 	}
+	echo "\n\n";
 }
 
 
