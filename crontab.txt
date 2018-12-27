@@ -1,0 +1,15 @@
+############
+# TapForms 
+############
+
+# Update ElasticSearch from the other databases once an hour.
+@hourly php /path/to/tftools/get-changes.php > /tmp/tf-couchdb-es-sync.log 2>&1
+
+# Backup TF databases from CouchDB ten minutes before the hour.
+50 * * * *  /path/to/tftools/backup-db.php > /tmp/backup-db.log 2>&1
+
+# Do git snapshots hourly.
+@hourly /path/to/tftools/bin/gitbackup.sh > /tmp/gitbackup.log 2>&1 
+
+# Clean up at 11:50pm 
+50 23 * * * /path/to/tftools/bin/gitprune.sh > /tmp/gitprune.log 2>&1
