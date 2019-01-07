@@ -30,6 +30,6 @@ can change this to suit your case.
 
 # Scripts 
 
-* [Backups](docs/Scripts/Backups.md)
+* [Backups](docs/Scripts/Backup.md)
 * [Build Tree](docs/Scripts/BuildTree.md)
 * [ElasticSearch](docs/Scripts/ElasticSearch.md)
