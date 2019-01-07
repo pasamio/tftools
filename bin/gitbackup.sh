@@ -1,7 +1,16 @@
 #!/bin/bash
 
+# Find environment variables
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+CONFIG_FILE=$DIR/../configs/env.sh
+
+if [ -f $CONFIG_FILE ]
+then
+	source $CONFIG_FILE
+fi
+
 # Set the backup base directory.
-BACKUP_BASE=/usr/local/var/gitbackup
+BACKUP_BASE="${BACKUP_BASE:-/usr/local/var/gitbackup}"
 
 # Fix the backup time to now (to prevent skew between backups)
 NOW=`date +%Y-%m-%d_%H%M`
