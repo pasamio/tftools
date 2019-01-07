@@ -33,3 +33,8 @@ can change this to suit your case.
 * [Backups](docs/Scripts/Backup.md)
 * [Build Tree](docs/Scripts/BuildTree.md)
 * [ElasticSearch](docs/Scripts/ElasticSearch.md)
+
+# Notes
+
+Tap Forms Copyright ©2018 Tap Zapp Software Inc.
+
