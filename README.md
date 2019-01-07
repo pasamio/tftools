@@ -27,6 +27,8 @@ can change this to suit your case.
 | features | `backup` | Features enabled for the configuration. Backup is always enabled and is the default. |
 | name | (Optional) | A friendly name to refer to this configuration in user output. |
 
+Check out the [Getting Started guide](docs/GettingStarted.md) for a
+quick walkthrough of configuring the backup script.
 
 # Scripts 
 
