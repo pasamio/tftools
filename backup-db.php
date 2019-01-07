@@ -4,6 +4,20 @@
 ini_set('error_reporting', -1);
 ini_set('display_errors', 1);
 
+/**
+ * Backup Tool for CouchDB
+ *
+ * This tool uses the CouchDB changes API to identify changes to a 
+ * database and replicate it locally to the filesystem. This is
+ * intended to be used with a secondary backup system that will
+ * enable a primitive revisioning to occur (e.g. by using Time
+ * Machine or by the provided GIT scripts). This can then be used
+ * to restore previous versions or recover accidentally deleted
+ * entries.
+ */
+
+
+// Get all of the configs and process updates for them.
 foreach(glob(realpath(dirname(__FILE__)) . '/configs/*.ini') as $configFile)
 {
 	processUpdate(parse_ini_file($configFile));
@@ -13,6 +27,13 @@ foreach(glob(realpath(dirname(__FILE__)) . '/configs/*.ini') as $configFile)
 printf("%s\n", date('c'));
 die("All done\n");
 
+/**
+ * Delete an entire tree recursively.
+ *
+ * @param    string  $dir  The directory path to delete.
+ *
+ * @return   bool  The result of the final rmdir operation on this directory.
+ */  
 function delTree($dir) { 
 	$files = array_diff(scandir($dir), array('.','..')); 
 	foreach ($files as $file) { 
@@ -21,6 +42,16 @@ function delTree($dir) {
 	return rmdir($dir); 
 } 
 
+/**
+ * Returns a hashed destination path for a record ID.
+ * This is to have hashed directories to avoid megadirectories.
+ *
+ * @param   string  $backupPath     Destination path for backup.
+ * @param   string  $id             Unique Identifier of the record.
+ * @param   int     $depth       The depth of the hashing.
+ *
+ * @return  string  The desintation path to use for this record.
+ */
 function getPathForRecord($backupPath, $id, $depth = 2)
 {
 	$hash = md5($id);
@@ -36,6 +67,15 @@ function getPathForRecord($backupPath, $id, $depth = 2)
 	return $path;
 }
 
+/**
+ * Process updates for a given configuration.
+ *
+ * This script will work through changes from a given CouchDB instance
+ * and apply them to a local directory extracting out the documents to
+ * JSON files and storing exporting attachments.
+ *
+ * @param   array  $config  Soure configs.
+ */
 function processUpdate($config)
 {
 	extract($config);
