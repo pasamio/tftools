@@ -1,11 +1,17 @@
 #!/usr/bin/php -n -d error_reporting=-1 -d display_errors=1
 <?php
 
-foreach(glob(realpath(dirname(__FILE__)) . '/configs/*.ini') as $configFile)
+if (isset($argv[1]))
 {
-	buildTree(parse_ini_file($configFile), basename($configFile));
+	buildTree($argv[1], isset($argv[2]) && strlen($argv[2]) ? $argv[2] : $argv[1]);
 }
-
+else
+{
+	foreach(glob(realpath(dirname(__FILE__)) . '/configs/*.ini') as $configFile)
+	{
+		buildTree(parse_ini_file($configFile), basename($configFile));
+	}
+}
 
 die("All done\n");
 
@@ -24,7 +30,15 @@ function printJoin($forms, $field)
 
 function buildTree($config, $name)
 {
-	extract($config);
+	if (is_array($config))
+	{
+		extract($config);
+		$dbUri = $dbHost . '/' . $dbName;
+	}
+	else
+	{
+		$dbUri = $config;
+	}
 
 	$forms = array();
 	$tableFields = array();
@@ -40,9 +54,18 @@ function buildTree($config, $name)
 	//var_dump($config);
 	//echo "\n\n\n";
 	
+
+	$arrContextOptions=array(
+	    "ssl"=>array(
+		"verify_peer"=>false,
+		"verify_peer_name"=>false,
+	    ),
+	);
+
 	while ($total == 0 || $total > $limit * $page)
 	{
-		$data = file_get_contents(sprintf('%s/%s/_all_docs?include_docs=true&limit=%s&skip=%s', $dbHost, $dbName, $limit, $page * $limit)) or die("Unable to connect to CouchDB\n");
+		$uri = sprintf('%s/_all_docs?include_docs=true&limit=%s&skip=%s', $dbUri, $limit, $page * $limit);
+		$data = file_get_contents($uri, false, stream_context_create($arrContextOptions)) or die("Unable to connect to CouchDB\n");
 		$response = json_decode($data);
 		$total = $response->total_rows;
 		$rows = $response->rows;
@@ -167,8 +190,18 @@ function buildTree($config, $name)
 							if (strpos($calcField, ':'))
 							{
 								$pieces = explode(':', $calcField);
-								$linkFieldId = $pieces[2];
-								$targetFieldId = $pieces[4];
+								if (count($pieces) < 4)
+								{
+									//printf("\nField has less than four pieces: %s", $calcField);
+									$linkFieldId = $pieces[0];
+									$targetFieldId = $pieces[2];
+								}
+								else
+								{
+									//printf("\nField has more than four pieces: %s", $calcField);
+									$linkFieldId = $pieces[2];
+									$targetFieldId = $pieces[4];
+								}
 								$linkField = $form->fields[$linkFieldId];
 								if ($linkField->fieldType == 'table')
 								{
