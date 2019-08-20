@@ -13,7 +13,10 @@ if [ -f /tmp/tf-finder.lock ]; then
 	echo "Lock file exists but not PID found, proceeding."
 fi
 
+# Enable fail on error.
 set -e
+
+# Enable trace logging (debug).
 #set -x
 
 # Kill off our children
@@ -43,8 +46,11 @@ TMPFILE_SERVERS=`mktemp /tmp/tf_servers.XXXXXXX`
 # Find servers announcing TapForms Sync, give them 10 seconds to appear then kill the process and extract the servers.
 # Then loop over each of the servers we found.
 echo "Scanning network, this will take ten seconds..."
-for i in `( (dns-sd -B _tapforms-sync._tcp. > $TMPFILE_SERVERS) & sleep 10; kill $! ); grep '_tapforms-sync._tcp.' $TMPFILE_SERVERS | sed -e 's/.*_tapforms-sync._tcp. *//'`
+while read i
 do
+	if [ "$i" == "" ]; then
+		continue;
+	fi
 	# Obvious comment is obvious.
 	echo Processing instance "$i"...
 
@@ -60,7 +66,7 @@ do
 
 	# We need to clean up the file we put the output for the host address lookup.
 	#rm $TMPFILE_HOST
-done
+done < <(( (dns-sd -B _tapforms-sync._tcp. > $TMPFILE_SERVERS) & sleep 10; kill $! ); grep '_tapforms-sync._tcp.' $TMPFILE_SERVERS | sed -e 's/.*_tapforms-sync._tcp. *//')
 
 # We need to clean up the file we put the output for the list of servers.
 #rm $TMPFILE_SERVERS
