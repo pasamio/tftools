@@ -1,5 +1,7 @@
 <?php
 
+defined('TF') or die();
+
 require_once('uuid.php');
 
 function generateDocumentId()
