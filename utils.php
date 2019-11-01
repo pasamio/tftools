@@ -4,9 +4,16 @@ defined('TF') or die();
 
 require_once('uuid.php');
 
-function generateDocumentId()
+/**
+ * Generate random TF document ID
+ *
+ * @param   string  $prefix  Prefix to use for the document ID.
+ *
+ * @return  string  document ID
+ */
+function generateDocumentId($prefix='rec')
 {
-	return 'rec-' . str_replace('-', '', UUID::mint()->string);
+        return $prefix . '-' . str_replace('-', '', \UUID::mint()->string);
 }
 
 /**
