@@ -35,6 +35,7 @@ quick walkthrough of configuring the backup script.
 * [Backups](docs/Scripts/Backup.md)
 * [Build Tree](docs/Scripts/BuildTree.md)
 * [ElasticSearch](docs/Scripts/ElasticSearch.md)
+* [Script Sync](docs/Scripts/ScriptSync.md)
 
 # Notes
 
