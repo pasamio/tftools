@@ -24,3 +24,19 @@ function hasFeature($config, $feature)
         return false;
 }
 
+/**
+ * Return a safely formatted filename
+ * - replace out spaces, colons and slashes
+ * 
+ * @param   string  $scriptPath  Path to root directory to store the scripts in.
+ * @param   string  $formId      The unique identifier of the form.
+ * @param   string  $recordId    The unique identifier of the record.
+ * @param   string  $name        The friendly name of the script.
+ *
+ * @return  string  A formatted path that should be safe for use with the filesystem.
+ */
+function getScriptPathForRecord($scriptPath, $formId, $recordId, $name)
+{
+        return sprintf("%s/%s/%s-%s.js", $scriptPath, $formId, $recordId, str_replace(array(' ',':', '/'), '_', $name));
+}
+
