@@ -39,6 +39,7 @@ function backupDatabase($hostname, $dbID, $destination, $perHost = false)
 
 	@mkdir($baseDir, 0777, true);
 
+	$allDocs = $hostname . '/' . $dbID . '/_changes?deleted=true';
 	$allDocs = $hostname . '/' . $dbID . '/_all_docs';
 	echo "Getting documents from $allDocs\n";
 	$all_docs = json_decode(file_get_contents($allDocs, false, stream_context_create($arrContextOptions)));
@@ -48,17 +49,23 @@ function backupDatabase($hostname, $dbID, $destination, $perHost = false)
 		return;
 	}
 
+	if (!isset($all_docs->rows))
+	{
+		$all_docs->rows = $all_docs->results;
+	}
+
 	foreach($all_docs->rows as $row)
 	{
-		$recordDir = $baseDir . '/' . $row->id;
+		$recordDir = $baseDir . '/' . urlencode($row->id);
 		@mkdir($recordDir);
 
-		$recordUrl = $hostname . '/'. $dbID . '/' . str_replace('/', '%2F', $row->id) . '?revs=true';
+		$recordUrl = $hostname . '/'. $dbID . '/' . urlencode($row->id) . '?revs=true';
 		echo "Getting revisions from $recordUrl\n";
 		$recordJSON = file_get_contents_curl($recordUrl, $ch);
 
 		if ($recordJSON === false) {
-			die("Record JSON was false, this shouldn't happen.\n");
+			echo("Record JSON was false, assuming deleted.\n");
+			continue;
 		}
 
 		$record = json_decode($recordJSON);
@@ -69,7 +76,7 @@ function backupDatabase($hostname, $dbID, $destination, $perHost = false)
 		{
 			$offset = $start - $index;
 			$key = $offset . '-' . $revision;
-			$revisionUrl = $hostname . '/'. $dbID . '/' . $row->id . '?rev='  . $key;
+			$revisionUrl = $hostname . '/'. $dbID . '/' . urlencode($row->id) . '?rev='  . $key;
 
 			$destination = $recordDir . '/' . $key . '.json';
 
@@ -141,7 +148,6 @@ echo "Instance Path: $instancePath\n";
 echo "Couch Hosts: " . implode(', ', $couchHosts) . "\n";
 echo "Per Host: " . ($perHost ? 'Yes' : 'No') . "\n";
 echo "=====================\n\n";
-die();
 
 foreach ($couchHosts as $host)
 {
