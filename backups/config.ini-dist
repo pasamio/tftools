@@ -1,2 +1,3 @@
 perHost = false
 couchHosts[] = http://localhost:5984
+instancePath = /tmp/tf-hosts
