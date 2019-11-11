@@ -30,9 +30,9 @@ can change this to suit your case.
 Check out the [Getting Started guide](docs/GettingStarted.md) for a
 quick walkthrough of configuring the backup script.
 
-# Scripts 
+# Scripts
 
-* [Backups](docs/Scripts/Backup.md)
+* [Backups](docs/Backups.md)
 * [Build Tree](docs/Scripts/BuildTree.md)
 * [ElasticSearch](docs/Scripts/ElasticSearch.md)
 * [Script Sync](docs/Scripts/ScriptSync.md)
