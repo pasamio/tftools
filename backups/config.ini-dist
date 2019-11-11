@@ -1,0 +1,2 @@
+perHost = false
+couchHosts[] = http://localhost:5984
