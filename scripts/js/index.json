@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Logger",
+        "description": "Logger module provides some extra utility functions for logging data.\nThis adds some useful functions for integrating with the console and for building script fields.",
+        "versions": [
+            {
+                "version": "1.0.1",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/master/scripts/js/logger.js"
+            }
+        ]
+    },
+    {
+        "name": "setIfEmpty",
+        "description": "Set a field value only if the field is already empty.",
+        "versions": [
+            {
+                "version": "1.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/master/scripts/js/setIfEmpty.js"
+            }
+        ]
+    },
+    {
+        "name": "prototype",
+        "description": "Prototype improvements for strings (isNumber)",
+        "versions": [
+            {
+                "version": "1.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/master/scripts/js/prototype.js"
+            }
+        ]
+    },
+    {
+        "name": "Prompter Functions",
+        "description": "Prompter Functions for using the async system to handle some requests.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/ddf3a5aef29abff0d0d535d1eb44d37f81a81438/scripts/js/prompter.js"
+            }
+        ]
+    }
+]
