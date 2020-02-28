@@ -1,11 +1,13 @@
 // ========== Logger Start ========== //
 // NAME: Logger
-// VERSION: 1.0.1
+// VERSION: 1.0.2
 /**
  * Logger module provides some extra utility functions for logging data.
  * This adds some useful functions for integrating with the console and
- *   for building script fields. 
+ *   for building script fields.
  */
+if (logger == undefined)
+
 var logger = (function() {
 	var logdata = "";
 	return {
@@ -19,6 +21,17 @@ var logger = (function() {
 			{
 				logdata += message + "\r\n";
 				console.log(new Date() + '\t' + message)
+			},
+
+		/**
+		 * Log an error
+		 *
+		 * Takes a `message` and `error` object and then formats into an error
+		 *   via `logMessage`.
+		 */
+		logError: function(error)
+			{
+				this.logMessage(`Caught error: "${error}" at ${error.line}, ${error.column}`);
 			},
 
 		/**
@@ -46,12 +59,13 @@ var logger = (function() {
 		 */
 		consoleHeader: function(scriptName, formName = "")
 			{
+				this.clearLog();
 				var label = scriptName + (formName ? ` (${formName})` : '');
 				console.log('==================================================================');
 				console.log('Start "' + label + '" script execution at ' + new Date());
 				console.log('==================================================================\n');
 			},
-			
+
 		/**
 		 * Utility function to print a footer when the script ends with optional form name
 		 */
