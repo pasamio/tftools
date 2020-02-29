@@ -1,11 +1,71 @@
 [
     {
+        "name": "addToTableIfMissing",
+        "description": "Add's a key/value pair to a table if and only if it's missing.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/c40161d/scripts/js/addToTableIfMissing.js"
+            }
+        ]
+    },
+    {
+        "name": "Configuration",
+        "description": "Configuration module provides leverages a 'Configuration' field in the 'Script Manager' form with the 'Script Name' field used as a key.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/7854433/scripts/js/configuration.js"
+            }
+        ]
+    },
+    {
+        "name": "Currency Converter",
+        "description": "Convert from one currency to another using a free web service.",
+        "versions": [
+            {
+                "version": "1.2.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/1a523f3/scripts/js/currency.js"
+            }
+        ]
+    },
+    {
+        "name": "Form Logger",
+        "description": "Method to dump out the field ID's, type and names with the ability to filter by type.",
+        "versions": [
+            {
+                "version": "1.0.3",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/3226268/scripts/js/form_logger.js"
+            }
+        ]
+    },
+    {
+        "name": "getRecordFromFormWithKey",
+        "description": "Get a record from a form with a key field, optionally creating it if missing.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/a2526ee/scripts/js/getRecordFromFormWithKey.js"
+            }
+        ]
+    },
+    {
+        "name": "getRecordsFromLinkMatchingSearch",
+        "description": "Get a record from a linked form matching a given key/value criteria.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/ee46809/scripts/js/getRecordsFromLinkMatchingSearch.js"
+            }
+        ]
+    },
+    {
         "name": "Logger",
         "description": "Logger module provides some extra utility functions for logging data.\nThis adds some useful functions for integrating with the console and for building script fields.",
         "versions": [
             {
-                "version": "1.0.1",
-                "url": "https://raw.githubusercontent.com/pasamio/tftools/master/scripts/js/logger.js"
+                "version": "1.0.2",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/c016375/scripts/js/logger.js"
             }
         ]
     },
@@ -24,8 +84,18 @@
         "description": "Prototype improvements for strings (isNumber)",
         "versions": [
             {
-                "version": "1.0",
+                "version": "1.0.0",
                 "url": "https://raw.githubusercontent.com/pasamio/tftools/master/scripts/js/prototype.js"
+            }
+        ]
+    },
+    {
+        "name": "Rate Limiter",
+        "description": "Rate Limiter module provides utilities to limit and delay over time.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/fa4155e/scripts/js/rate_limiter.js"
             }
         ]
     },
@@ -34,8 +104,28 @@
         "description": "Set a field value only if the field is already empty.",
         "versions": [
             {
-                "version": "1.0",
+                "version": "1.0.0",
                 "url": "https://raw.githubusercontent.com/pasamio/tftools/master/scripts/js/setIfEmpty.js"
+            }
+        ]
+    },
+    {
+        "name": "Stack Counter",
+        "description": "Debugging tool to count stacks and validate re-entrant behaviour.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/7e45472/scripts/js/stack_counter.js"
+            }
+        ]
+    },
+    {
+        "name": "vlookup",
+        "description": "VLOOKUP function similar to Excel's version with support for either using records from either Forms or Link to Form fields",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/97e92a4/scripts/js/vlookup.js"
             }
         ]
     }
