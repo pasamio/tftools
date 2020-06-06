@@ -110,6 +110,16 @@
         ]
     },
     {
+        "name": "sprintf",
+        "description": "String formatter implementation",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/master/scripts/js/sprintf.js"
+            }
+        ]
+    },    
+    {
         "name": "Stack Counter",
         "description": "Debugging tool to count stacks and validate re-entrant behaviour.",
         "versions": [
