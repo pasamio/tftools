@@ -65,7 +65,7 @@ var formLogger = (function() {
 								baseFieldName = `${jsFormName}__${jsFieldName}`;
 								for (tableField of fields[field].tableFields) {
 									let jsTableFieldName = this.getJsName(tableField.name);
-									console.log(`var ${baseFieldName}_${jsTableFieldName}_fldID = "${tableField.getId()}"; // ${tableField.fieldType}`);
+									console.log(`var ${baseFieldName}__${jsTableFieldName}_fldID = "${tableField.getId()}"; // ${tableField.fieldType}`);
 								}
 							}
 							break;
