@@ -1,7 +1,8 @@
 // ========== Form Logger Start ========== //
 // NAME: Form Logger
-// VERSION: 1.0.3
+// VERSION: 1.0.4
 // CHANGELOG:
+//   1.0.4: Added support for table fields.
 //   1.0.3: Replaced `var` with `let` and add PARENT_SCRIPT guard for test.
 //   1.0.2: Added support for "variable" layout that outputs field ID's as variables.
 //   1.0.1: Added support for custom form name and fix for "getId" rename.
@@ -10,6 +11,7 @@
  * Method to dump out the field ID's, type and names with the ability to filter by type.
  */
 if (formLogger == undefined)
+
 var formLogger = (function() {
 	let invalidChars = new RegExp('[^A-Za-z0-9_ ]', 'g');
 	return {
@@ -58,11 +60,24 @@ var formLogger = (function() {
 
 							let jsFieldName = this.getJsName(fields[field].name);
 							console.log(`var ${jsFormName}__${jsFieldName}_fldID = "${fields[field].getId()}"; // ${fields[field].fieldType}`);
+
+							if (fields[field].fieldType == 'table') {
+								baseFieldName = `${jsFormName}__${jsFieldName}`;
+								for (tableField of fields[field].tableFields) {
+									let jsTableFieldName = this.getJsName(tableField.name);
+									console.log(`var ${baseFieldName}_${jsTableFieldName}_fldID = "${tableField.getId()}"; // ${tableField.fieldType}`);
+								}
+							}
 							break;
 						case 'default':
 						case 'friendly':
 						default:
 							console.log(fields[field].getId() + ": " + fields[field].fieldType + "\t" + fields[field].name);
+							if (fields[field].fieldType == 'table') {
+								for (tableField of fields[field].tableFields) {
+									console.log("\t" + tableField.getId() + ": " + tableField.fieldType + "\t" + tableField.name);
+								}
+							}
 							break;
 					}
 				}
