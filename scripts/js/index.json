@@ -34,8 +34,8 @@
         "description": "Method to dump out the field ID's, type and names with the ability to filter by type.",
         "versions": [
             {
-                "version": "1.0.3",
-                "url": "https://raw.githubusercontent.com/pasamio/tftools/3226268/scripts/js/form_logger.js"
+                "version": "1.0.4",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/03244e64/scripts/js/form_logger.js"
             }
         ]
     },
