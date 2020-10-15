@@ -138,5 +138,15 @@
                 "url": "https://raw.githubusercontent.com/pasamio/tftools/97e92a4/scripts/js/vlookup.js"
             }
         ]
+    },
+    {
+        "name": "Profiler",
+        "description": "Profiler keeps track of where time is spent in your scripts for you.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/4ef3cbc395ed721460c340f830600293c9e8a52e/scripts/js/profiler.js"
+            }
+        ]
     }
 ]
