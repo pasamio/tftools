@@ -75,7 +75,7 @@
         "versions": [
             {
                 "version": "1.0.0",
-                "url": "https://raw.githubusercontent.com/pasamio/tftools/ddf3a5aef29abff0d0d535d1eb44d37f81a81438/scripts/js/prompter.js"
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/ddf3a5a/scripts/js/prompter.js"
             }
         ]
     },
@@ -145,7 +145,7 @@
         "versions": [
             {
                 "version": "1.0.0",
-                "url": "https://raw.githubusercontent.com/pasamio/tftools/4ef3cbc395ed721460c340f830600293c9e8a52e/scripts/js/profiler.js"
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/4ef3cbc/scripts/js/profiler.js"
             }
         ]
     }
