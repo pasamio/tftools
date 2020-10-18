@@ -1,9 +1,10 @@
 // ========== convertCurrency Start ========== //
-// NAME: Convert Currency
-// VERSION: 1.2
+// NAME: Currency Converter
+// VERSION: 1.2.1
 // CHANGES:
-//  1.2: Add support for configuration via Script Manager form.
-//  1.1: Add options for different API, update to v7.
+//  1.2.1: Fix configuration issue as script is named "Currency Converter"
+//  1.2.0: Add support for configuration via Script Manager form.
+//  1.1.0: Add options for different API, update to v7.
 
 document.getFormNamed('Script Manager').runScriptNamed('Logger');
 document.getFormNamed('Script Manager').runScriptNamed('Configuration');
@@ -24,7 +25,7 @@ function convertCurrency(source_currency, destination_currency, amount)
 						"premium": "https://api.currconv.com"
 					};
 					
-	var apiKey = config.getValue('Currency', 'API Key');
+	var apiKey = config.getValue('Currency Converter', 'API Key');
 	var currency_key = source_currency + "_" + destination_currency;
 	var url = `${services['prepaid']}/api/v7/convert?compact=ultra&apiKey=${apiKey}&q=${currency_key}`;
 	
@@ -46,5 +47,5 @@ function convertCurrency(source_currency, destination_currency, amount)
 	}
 }
 
-config.setDefault('Currency', 'API Key', 'text', '');
+config.setDefault('Currency Converter', 'API Key', 'text', '');
 // ========== convertCurrency End ========== //
