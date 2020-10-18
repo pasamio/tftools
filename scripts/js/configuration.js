@@ -1,6 +1,9 @@
 // ========== Configuration Start ========== //
 // NAME: Configuration
-// VERSION: 1.0.0
+// VERSION: 1.0.1
+// CHANGES:
+//   1.0.1: Add better handling around missing script records.
+//   1.0.0: Initial version.
 
 document.getFormNamed('Script Manager').runScriptNamed('getRecordFromFormWithKey');
 
@@ -27,14 +30,20 @@ var config = (function() {
 		getConfigObject: function(scriptName)
 		{
 			let scriptRecord = getRecordFromFormWithKey('Script Manager', script_name_id, scriptName);
-			
+
+			if (scriptRecord == undefined)
+			{
+				console.log(`WARNING: Unable to find script manager record for ${scriptName}`);
+				return [undefined, {}];
+			}
+
 			if (!scriptRecord.getFieldValue(script_name_id))
 			{
 				scriptRecord.setFieldValue(script_name_id, scriptName);
 			}
-			
+
 			let currentConfig = scriptRecord.getFieldValue(configuration_id);
-			
+
 			if (!currentConfig)
 			{
 				currentConfig = {};
@@ -43,10 +52,10 @@ var config = (function() {
 			{
 				currentConfig = JSON.parse(currentConfig);
 			}
-			
+
 			return [scriptRecord, currentConfig];
 		},
-		
+
 		/**
 		 * Set a default for a given script's parameter.
 		 *
@@ -66,7 +75,7 @@ var config = (function() {
 		{
 			let needsUpdate = false;
 			let [scriptRecord, currentConfig] = this.getConfigObject(scriptName);
-			
+
 			if (currentConfig[paramName] == undefined)
 			{
 				currentConfig[paramName] = { 'type': paramType, 'value': paramDefault, 'options': paramOptions };
@@ -79,15 +88,15 @@ var config = (function() {
 					currentConfig[paramName]['type'] = paramType;
 					needsUpdate = true;
 				}
-				
+
 				if (currentConfig[paramName]['options'] != paramOptions)
 				{
 					currentConfig[paramName]['options'] = paramOptions;
 					needsUpdate = true;
 				}
 			}
-			
-			if (needsUpdate)
+
+			if (scriptRecord && needsUpdate)
 			{
 				scriptRecord.setFieldValue(configuration_id, JSON.stringify(currentConfig, null, 4));
 				document.saveAllChanges();
@@ -106,6 +115,12 @@ var config = (function() {
 		getValue: function(scriptName, paramName)
 		{
 			let [scriptRecord, currentConfig] = this.getConfigObject(scriptName);
+
+			if (!scriptRecord)
+			{
+				return undefined;
+			}
+
 			if (currentConfig[paramName] != undefined)
 			{
 				return currentConfig[paramName]['value'];
@@ -125,16 +140,21 @@ var config = (function() {
 		setValue: function(scriptName, paramName, paramValue)
 		{
 			let [scriptRecord, currentConfig] = this.getConfigObject(scriptName);
-			
+
+			if (!scriptRecord)
+			{
+				return this;
+			}
+
 			if (currentConfig[paramName] == undefined)
 			{
 				currentConfig[paramName] = {};
 			}
-			
+
 			currentConfig[paramName]['value'] = paramValue;
-			
+
 			scriptRecord.setFieldValue(configuration_id, JSON.stringify(currentConfig, null, 4));
-			document.saveAllChanges();			
+			document.saveAllChanges();
 			return this;
 		},
 
@@ -147,7 +167,7 @@ var config = (function() {
 		 * @param  {string}  paramName - The parameter name within the script context.
 		 *
 		 * @return {object}  Reference to the current object to support chaining/fluent API.
-		 */		
+		 */
 		clearConfig: function(scriptName)
 		{
 			let scriptRecord = getRecordFromFormWithKey('Script Manager', script_name_id, scriptName, false);
@@ -155,7 +175,7 @@ var config = (function() {
 			{
 				return;
 			}
-			
+
 			scriptRecord.setFieldValue(configuration_id, '{}');
 			document.saveAllChanges();
 			return this;
