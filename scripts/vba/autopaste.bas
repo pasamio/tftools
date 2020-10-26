@@ -38,6 +38,13 @@ Public Sub HandleClipboardRequest()
     Next
 End Sub
 
+Public Function GetLength(a As Variant) As Integer
+   If IsEmpty(a) Then
+      GetLength = 0
+   Else
+      GetLength = UBound(a) - LBound(a) + 1
+   End If
+End Function
 
 Rem Better Find and Replace from here: https://wordmvp.com/FAQs/Customization/ReplaceAnywhere.htm
 Public Sub FindReplaceAnywhere(Key As String, Value As String)
