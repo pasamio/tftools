@@ -1,7 +1,8 @@
 // ========== Form Logger Start ========== //
 // NAME: Form Logger
-// VERSION: 1.0.4
+// VERSION: 1.0.5
 // CHANGELOG:
+//   1.0.5: Add new "CouchDB" layout.
 //   1.0.4: Added support for table fields.
 //   1.0.3: Replaced `var` with `let` and add PARENT_SCRIPT guard for test.
 //   1.0.2: Added support for "variable" layout that outputs field ID's as variables.
@@ -29,8 +30,28 @@ if (formLogger == undefined)
                 }
 
                 let jsFormName = this.getJsName(targetForm.name);
+                let shell = {
+                    "_id": "rec-generatedidhere",
+                    "formName": targetForm.name,
+                    "deviceName": "Tampermonkey",
+                    "dateModified": "new Date()",
+                    "dateCreated": "new Date()",
+                    "_attachments": {
+                        "photoattachment.jpg": {
+                            "data": "base64imagedatahere",
+                            "content_type": "image/jpeg",
+                        },
+                    },
+                    "dbID": document.getId(),
+                    "type": targetForm.getId(),
+                    "form": targetForm.getId(),
+                    "values": {}
+                };
 
                 switch (layout) {
+                    case 'couchdb':
+                        // :D
+                        break;
                     case 'variable':
                         console.log(`// ${targetForm.name}`);
                         console.log(`var ${jsFormName}_formID = "${targetForm.getId()}";`);
@@ -48,6 +69,40 @@ if (formLogger == undefined)
                 for (field in fields) {
                     if (type.length == 0 || type.includes(fields[field].fieldType)) {
                         switch (layout) {
+                            case 'couchdb':
+                                // :D
+                                switch (fields[field].fieldType) {
+                                    case 'date':
+                                        shell.values[fields[field].getId()] = {
+                                            "repeat": 0,
+                                            "alert": false,
+                                            "title": fields[field].name,
+                                            "note": "",
+                                            "date": "2020-01-02"
+                                        };
+                                        break;
+                                    case 'photo':
+                                        shell.values[fields[field].getId()] = [{
+                                            "recordid": "rec-generatedidhere",
+                                            "filename": fields[field].name + ".jpg",
+                                            "mimetype": "image/jpeg",
+                                        }];
+                                        break;
+                                    case 'table':
+                                    case 'date_created':
+                                    case 'date_modified':
+                                    case 'from_form':
+                                    case 'form':
+                                    case 'calc':
+                                    case 'script':
+                                    case 'section':
+                                        // no-op fields that shouldn't be set.
+                                        break;
+                                    default:
+                                        shell.values[fields[field].getId()] = fields[field].name + ":" + fields[field].fieldType;
+                                        break;
+                                }
+                                break;
                             case 'variable':
                                 if (fields[field].fieldDescription && false) {
                                     console.log('/*');
@@ -79,6 +134,11 @@ if (formLogger == undefined)
                         }
                     }
                 }
+
+                if (layout == 'couchdb') {
+                    console.log("// " + targetForm.name);
+                    console.log(JSON.stringify(shell, null, 4));
+                }
             },
 
             dumpAll: function({
@@ -102,7 +162,7 @@ if (formLogger == undefined)
 // TEST
 if (typeof PARENT_SCRIPT === 'undefined') {
     formLogger.dumpAll({
-        "layout": 'variable'
+        "layout": 'couchdb'
     });
 }
 // ========== Form Logger End ========== //
