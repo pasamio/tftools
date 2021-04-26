@@ -7,6 +7,12 @@ Prompt a confirmation dialog with a simple message.
 
 > NOTE: This method uses async, please make sure your calling method is declared 'async'.
 
+## Signature
+
+```javascript
+promptConfirm(text, continueTitle = 'Continue', cancelTitle = 'Cancel')
+```
+
 ## Parameters
 
 | Name | Type | Description |
@@ -21,12 +27,6 @@ Prompt a confirmation dialog with a simple message.
 
 Boolean result if the user confirmed or declined the dialog.
 
-
-## Signature 
-
-```javascript
-function promptConfirm(text, continueTitle = 'Continue', cancelTitle = 'Cancel')
-```
 
 ## Examples
 
@@ -48,6 +48,13 @@ Prompt for a text input.
 
 > NOTE: This method uses async, please make sure your calling method is declared 'async'.
 
+## Signature
+
+```javascript
+promptText(text, popupName, continueTitle = 'Continue', cancelTitle = 'Cancel')
+```
+
+
 ## Parameters
 
 | Name | Type | Description |
@@ -63,11 +70,6 @@ Prompt for a text input.
 The input text or false if cancelled.
 
 
-## Signature
-
-```javascript
-function promptText(text, popupName, continueTitle = 'Continue', cancelTitle = 'Cancel')
-```
 
 ## Examples
 
