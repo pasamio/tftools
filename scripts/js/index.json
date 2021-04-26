@@ -10,6 +10,16 @@
         ]
     },
     {
+        "name": "Base64",
+        "description": "Base64 encode/decode strings",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/c6551e9/scripts/js/Base64.js"
+            }
+        ]
+    },
+    {
         "name": "Configuration",
         "description": "Configuration module provides leverages a 'Configuration' field in the 'Script Manager' form with the 'Script Name' field used as a key.",
         "versions": [
@@ -130,6 +140,16 @@
             {
                 "version": "1.0.0",
                 "url": "https://raw.githubusercontent.com/pasamio/tftools/7e45472/scripts/js/stack_counter.js"
+            }
+        ]
+    },
+    {
+        "name": "utf8Bytes",
+        "description": "utf8Bytes handles taking a UTF-8 string and turning it into bytes suitable for use with the Base64.btoa",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/c6551e9/scripts/js/utf8Bytes.js"
             }
         ]
     },
