@@ -84,6 +84,26 @@
         ]
     },
     {
+        "name": "md5sum",
+        "description": "Javascript native MD5 implementation",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/71a0eab/scripts/js/md5sum.js"
+            }
+        ]
+    },
+    {
+        "name": "PapaParse",
+        "description": "Javascript native CSV parser - https://www.papaparse.com",
+        "versions": [
+            {
+                "version": "5.3.1",
+                "url": "https://raw.githubusercontent.com/mholt/PapaParse/5.3.1/papaparse.min.js"
+            }
+        ]
+    },
+    {
         "name": "Prompter Functions",
         "description": "Prompter Functions for using the async system to handle some requests.",
         "versions": [
