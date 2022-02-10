@@ -9,6 +9,16 @@
             }
         ]
     },
+     {
+        "name": "aggregateForm",
+        "description": "Aggregate form takes data from a source form and sums it together into a target form.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/5dd53bb/scripts/js/aggregateForm.js"
+            }
+        ]
+    },
     {
         "name": "Base64",
         "description": "Base64 encode/decode strings",
