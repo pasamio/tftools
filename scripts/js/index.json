@@ -114,6 +114,16 @@
         ]
     },
     {
+        "name": "PicklistID",
+        "description": "PicklistID returns the offset index of a value from a pick list.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/a9aaed0/scripts/js/picklistid.js"
+            }
+        ]
+    },
+    {
         "name": "Prompter Functions",
         "description": "Prompter Functions for using the async system to handle some requests.",
         "versions": [
