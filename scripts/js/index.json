@@ -184,6 +184,16 @@
         ]
     },
     {
+        "name": "strftime",
+        "description": "Date/Time formatter implementation from samsonjs.",
+        "versions": [
+            {
+                "version": "0.10.1",
+                "url": "https://raw.githubusercontent.com/samsonjs/strftime/v0.10.1/strftime.js"
+            }
+        ]
+    },
+    {
         "name": "utf8Bytes",
         "description": "utf8Bytes handles taking a UTF-8 string and turning it into bytes suitable for use with the Base64.btoa",
         "versions": [
