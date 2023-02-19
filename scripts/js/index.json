@@ -88,8 +88,22 @@
         "description": "Logger module provides some extra utility functions for logging data.\nThis adds some useful functions for integrating with the console and for building script fields.",
         "versions": [
             {
+                "version": "1.0.3",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/9bd2d25/scripts/js/logger.js"
+            },
+            {
                 "version": "1.0.2",
                 "url": "https://raw.githubusercontent.com/pasamio/tftools/c016375/scripts/js/logger.js"
+            }
+        ]
+    },
+    {
+        "name": "Managed Fields",
+        "description": "Managed Fields allows you to set up configuration for specific fields in forms to log or control fields.",
+        "versions": [
+            {
+                "version": "1.0.0",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/046d3e8/scripts/js/managed_fields.js"
             }
         ]
     },
