@@ -114,6 +114,10 @@
             {
                 "version": "1.0.0",
                 "url": "https://raw.githubusercontent.com/pasamio/tftools/046d3e8/scripts/js/managed_fields.js"
+            },
+            {
+                "version": "1.0.1",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/5eb0c00/scripts/js/managed_fields.js"
             }
         ]
     },
