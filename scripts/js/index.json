@@ -74,6 +74,16 @@
         ]
     },
     {
+        "name": "getRecordsFromFormMatchingSearch",
+        "description": "Get records from a form matching a given key/value criteria.",
+        "versions": [
+            {
+                "version": "1.0.1",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/0e84d0e/scripts/js/getRecordsFromFormMatchingSearch.js"
+            }
+        ]
+    },
+    {
         "name": "getRecordsFromLinkMatchingSearch",
         "description": "Get a record from a linked form matching a given key/value criteria.",
         "versions": [
