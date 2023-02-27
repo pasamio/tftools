@@ -4,12 +4,12 @@
 // CHANGELOG:
 //   1.0.0: Initial version.
 //   1.0.1: Add setIfEmpty option, fix missing record ID and add extra rules option.
+//   1.0.2: Remove debug statement.
 /**
  * Managed Fields adds extra flexibility for configuring per field
  * behaviours around enforcing constraints or logging values.
  */
 
-var PARENT_SCRIPT="Managed Fields";
 document.getFormNamed("Script Manager").runScriptNamed("Logger");
 document.getFormNamed("Script Manager").runScriptNamed("getRecordsFromFormMatchingSearch");
 
