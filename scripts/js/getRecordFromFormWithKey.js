@@ -1,6 +1,8 @@
 // ========== getRecordFromFormWithKey Start ========== //
 // NAME: Get Record From From With Key
-// VERSION: 1.0
+// VERSION: 1.0.1
+// CHANGELOG:
+//  1.0.1: Remove log levels and fix debug statement
 
 document.getFormNamed('Script Manager').runScriptNamed('Profiler');
 
@@ -17,19 +19,6 @@ if (!indexedRecordState)
 	console.log('Create new state');
 	var indexedRecordState = {};
 }
-
-const LOGLEVELS = {
-	'DEBUG': 7,
-	'INFO': 6,
-	'NOTICE': 5,
-	'WARN': 4,
-	'ERROR': 3,
-	'CRITICAL': 2,
-	'ALERT': 1,
-	'EMERGENCY': 0
-};
-Object.freeze(LOGLEVELS);
-var LOGLEVEL = LOGLEVELS.DEBUG;
 
 /**
  * Get a record from a form with a key field, optionally creating it if missing.
@@ -117,7 +106,7 @@ function getRecordFromFormWithKey(formName, keyFieldId, keyValue, createIfMissin
 		profiler.end();
 		return indexedRecordIndex[indexedRecordKey][keyValue];
 	}
-	else if (createIfMissing && false)
+	else if (createIfMissing)
 	{
 		profiler.start(`getRecordFromFormWithKey: ${formName}/${keyFieldId}: create new record`);
 		// If createIfMissing is set, create a new record.
