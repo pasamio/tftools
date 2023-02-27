@@ -68,8 +68,8 @@
         "description": "Get a record from a form with a key field, optionally creating it if missing.",
         "versions": [
             {
-                "version": "1.0.0",
-                "url": "https://raw.githubusercontent.com/pasamio/tftools/a2526ee/scripts/js/getRecordFromFormWithKey.js"
+                "version": "1.0.1",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/bcaf3cd/scripts/js/getRecordFromFormWithKey.js"
             }
         ]
     },
@@ -114,10 +114,6 @@
             {
                 "version": "1.0.1",
                 "url": "https://raw.githubusercontent.com/pasamio/tftools/5eb0c00/scripts/js/managed_fields.js"
-            },
-            {
-                "version": "1.0.0",
-                "url": "https://raw.githubusercontent.com/pasamio/tftools/046d3e8/scripts/js/managed_fields.js"
             }
        ]
     },
