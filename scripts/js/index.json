@@ -112,8 +112,8 @@
         "description": "Managed Fields allows you to set up configuration for specific fields in forms to log or control fields.",
         "versions": [
             {
-                "version": "1.0.1",
-                "url": "https://raw.githubusercontent.com/pasamio/tftools/5eb0c00/scripts/js/managed_fields.js"
+                "version": "1.0.2",
+                "url": "https://raw.githubusercontent.com/pasamio/tftools/2ac4e19/scripts/js/managed_fields.js"
             }
        ]
     },
